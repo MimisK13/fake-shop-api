@@ -1,20 +1,18 @@
 const express = require('express');
 const app = express();
-const db = require('./db.json');
 
-app.use(express.json());
+// Φόρτωση τοπικής "βάσης δεδομένων" από αρχείο JSON
+const data = require('./db.json');
 
-// Endpoints
-
+// Route για προϊόντα
 app.get('/api/products', (req, res) => {
-    res.json(db.products);
+    res.json(data.products);
 });
 
+// Route για κατηγορίες
 app.get('/api/categories', (req, res) => {
-    res.json(db.categories);
+    res.json(data.categories);
 });
 
-// Αν έχεις public φάκελο με εικόνες κλπ:
-app.use(express.static('public'));
-
-module.exports = app; // 🔥 Το export θέλει το Vercel!
+// Export της Express εφαρμογής (χωρίς app.listen)
+module.exports = app;
