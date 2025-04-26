@@ -16,14 +16,20 @@
 //     console.log(`🚀 JSON Server running at http://localhost:${port}`);
 // });
 
-const jsonServer = require('json-server');
-const server = jsonServer.create();
-const router = jsonServer.router('db.json');
-const middlewares = jsonServer.defaults({
-    static: 'public'
+const express = require('express');
+const app = express();
+const db = require('./db.json'); // Φορτώνουμε τα δεδομένα σαν JSON
+
+// Simple routes
+app.get('/api/products', (req, res) => {
+    res.json(db.products);
 });
 
-server.use(middlewares);
-server.use(router);
+app.get('/api/categories', (req, res) => {
+    res.json(db.categories);
+});
 
-module.exports = server; // 👈 Αντί να κάνεις server.listen, κάνε export
+// Optional: Serve static files from /public if θες
+app.use(express.static('public'));
+
+module.exports = app;
