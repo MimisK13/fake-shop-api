@@ -1,0 +1,16 @@
+{
+  "name": "fake-eshop-api",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node server.js",
+    "generate-db": "node generate-db.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "json-server": "^1.0.0-beta.3"
+  }
+}
